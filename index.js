@@ -95,5 +95,6 @@ app.put('/image', (req, res) => {
 		res.json(0);
 	}
 });
+//sushant for hacktoberfest
 
 app.listen(3000, () => {});
