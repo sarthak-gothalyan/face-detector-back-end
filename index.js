@@ -25,6 +25,7 @@ app.get('/', (req, res) => {
 	res.json(emptyUser);
 });
 
+//register handler start
 app.post('/register', (req, res) => {
 	const {email, name, password} = req.body;
 	const hashed = bcrypt.hashSync(password, 10);
@@ -49,7 +50,9 @@ app.post('/register', (req, res) => {
 	}).then(() => {})
 	.catch(err => res.status(400).json('unable to register'))
 });
+//register handler end
 
+//signin handler start
 app.post('/signin', (req, res) => {
 	db.select('email', 'hash').from('login').where('email', '=', req.body.email)
 		.then(users => {
@@ -66,6 +69,7 @@ app.post('/signin', (req, res) => {
 		})
 		.catch(err => {res.status(400).json(err) } );
 });
+//signin handler end
 
 app.get('/profile/:id', (req, res) => {
 	let {id } = req.params;
